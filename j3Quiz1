@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+public class Baku {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int array[] = new int[7];
+		
+		int n=1;
+		//랜덤값 7개 생성
+		for(int i=0; i<7; i++) {
+			int a=(int)(Math.random()*45)+1;
+			array[i] = a;
+			//중복값 제거
+			for(int j=0; j<i; j++) {
+				if(array[j]==array[i]) i--;
+			}
+		}
+		
+		for(int i=0; i<6; i++) {
+			if(i>0)	System.out.print(","+array[i]);
+			else System.out.print(array[i]);
+		}
+		
+		while(n!=0) {
+			System.out.println("로또 번호를 입력해 주세요?");
+			int array2[] = new int[6];
+
+			for(int i=0; i<6; i++) {
+				n=sc.nextInt();
+				array2[i]=n;
+				for(int j=0; j<i; j++) {
+					if(array2[i]==array2[j])
+					{
+						System.out.print("그 값은 입력하셨습니다.");
+						i--;
+						break;
+					}
+				}
+				if(n==0) break;
+				if(n<0 || n>45) {
+					System.out.println("1~45 숫자 중에서 입력하시오");
+					i--;
+				}
+			}
+			
+			int x=0,y=0;
+			for(int i=0; i<6; i++) {
+				for(int j=0; j<6; j++) {
+					if(array[i]==array2[j]) {
+					x++;
+					if(x>1)	System.out.print(","+array2[j]);
+					if(x==1) System.out.print(array2[j]);
+					}
+				}
+			}
+			
+			for(int i=0; i<6; i++) {
+				if(array2[i]==array[6]) {
+				y++;
+				System.out.print(","+array2[i]);
+				}
+			}
+			
+			if(n!=0) {
+			System.out.print(" "+ x +"개를 맞춰서 ");
+			if(x==6 && y==0) System.out.print("1등\n");
+			else if(x==5 && y==1) System.out.print("2등\n");
+			else if(x==5) System.out.print("3등\n");
+			else if(x==4) System.out.print("4등\n");
+			else if(x==3) System.out.print("5등\n");
+			else System.out.println(" 꽝!");
+			}
+		}
+		
+		System.out.println("이번주 로또번호는 ");
+		
+		for(int i=0; i<6; i++) {
+			if(i>0)	System.out.print(","+array[i]);
+			else System.out.print(array[i]);
+		}
+		
+		System.out.print(" 보너스 번호 "+ array[6]);
+
+	}
+
+}
