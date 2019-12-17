@@ -1,0 +1,110 @@
+import java.util.Scanner;
+
+public class Test1 {
+	// 반    : J2 
+	// 학번 : 1701198
+	// 이름 : 이유택
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+
+		System.out.println("입력 문자열의 줄(Line) 수를 입력하세요!");
+		int line = sc.nextInt();
+
+		System.out.println("한 줄(Line)의 글자 수를 입력하세요!");
+		int gul = sc.nextInt();
+
+		char array[][] = new char[line][gul];
+
+		for(int i=0; i<line; i++) {
+
+			System.out.println( (i+1) + "번째 라인의 문자열을 입력하세요");
+			if(i==0) {
+				sc.nextLine();
+			}
+			String str = sc.nextLine();
+
+			char buffer[]=new char[str.length()];
+			str.getChars(0, str.length(), buffer, 0);
+
+			for(int j=0; j<str.length(); j++) {
+				array[i][j] = buffer[j];
+			}
+
+		}
+		int hap=0;
+		int arr[]= new int[line];
+		int dan=0; //검색된 횟수
+		int a=0;
+
+		while(true) {
+
+			System.out.print("검색 할 문자열을 입력하세요.");
+			String choice = sc.nextLine();
+			char n[] = new char[choice.length()];
+			choice.getChars(0, choice.length(), n, 0);
+
+			// x축 돌릴 용도
+			for(int i=0; i<line; i++) {
+
+				//  x번째의 단어수가 포함되어 있는지
+				for(int j=0; j<gul; j++) {
+					// 단어 있는지 판별 여부
+					int y=j;
+					if(choice.charAt(0)==array[i][j]) {
+						int x=0;
+						for(int k=0; k<choice.length(); k++) {
+
+							if(choice.charAt(k)==array[i][j]) {
+								x++;
+								if(j==gul-1) break;
+							}
+							j++;
+						}
+
+						if(x==choice.length()) {
+							arr[i] = 1;
+							dan++;
+						}
+						else j=y;
+					}
+				}
+				if(a==0) {
+					int z=0;
+					for(int j=0; j<gul; j++) {
+						if(array[i][j]==' ') {
+							z++;
+						}
+					}
+					hap += (z+1);
+
+				}
+				
+			}
+			a++;
+			if(dan==0) System.out.println("찾을 수가 없습니다. ");
+
+			if(dan>0) {
+				System.out.println(choice+"을 찾았습니다.");
+				break;
+			}
+			
+		}
+
+
+		int b=0;
+		System.out.print("검색된 라인 수 : ");
+		for(int i=0; i<line; i++) {
+			if(arr[i]>0) {
+				
+				if(b>0) System.out.print(", "+(i+1));
+				else    System.out.print((i+1) + "");
+				b++;
+			}
+		}
+		System.out.println("\n검색된 횟수 : "  + dan);
+
+		System.out.println("총 단어수 : " + hap);
+	}
+
+}
