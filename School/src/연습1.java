@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 class student{
 	int num;
-	int number;
+	int id;
 	int kor;
 	int eng;
 	int math;
@@ -10,25 +10,30 @@ class student{
 	int sum;
 	int avg;
 
-	//ÃÑÁ¡¼ö
+	//ì´ì ìˆ˜
 	void getsum() {
 		sum = kor + eng + math + sci;
 	}
 
-	//Æò±Õ
+	//í‰ê· 
 	void getavg() {
 		avg = sum/4;
 	}
 
-	//¼ºÀû Ãâ·Â
+	//ì„±ì  ì¶œë ¥
 	void out() {
-		System.out.println(num + "\t" + number + "\t" + kor + "\t" + eng 
+		System.out.println(num + "\t" + id + "\t" + kor + "\t" + eng 
 				+ "\t" + math + "\t" + sci + "\t" + sum + "\t" + avg);
+	}
+
+	void out2() {
+		System.out.println("í•™ë²ˆ : " + id + " êµ­ì–´ : " + kor + " ì˜ì–´ : " + eng + 
+				" ìˆ˜í•™ : " + math + " ê³¼í•™ : " + sci + " ì´ì  : " + sum + " í‰ê·  : " + avg);
 	}
 
 }
 
-public class ¿¬½À1 {
+public class ì—°ìŠµ1 {
 
 	public static void main(String[] args) {
 		Scanner sc= new Scanner(System.in);
@@ -41,101 +46,137 @@ public class ¿¬½À1 {
 		int n=0;
 		int a=0;
 
-		while(a != 4) {
+		while(a != 5) {
 
-			System.out.println("1. ¼ºÀû ÀÔ·Â");
-			System.out.println("2. ÀüÃ¼ ¼ºÀû Ãâ·Â (ÀÔ·Â ¼ø¼­´ë·Î Ãâ·Â)");
-			System.out.println("3. ¼ºÀû ¼öÁ¤ÇÏ±â");
-			System.out.println("4. Á¾·á");
+			System.out.println("1. ì„±ì  ì…ë ¥");
+			System.out.println("2. ì „ì²´ ì„±ì  ì¶œë ¥ (ì…ë ¥ ìˆœì„œëŒ€ë¡œ ì¶œë ¥)");
+			System.out.println("3. ì„±ì  ìˆ˜ì •í•˜ê¸°");
+			System.out.println("4. ìˆœìœ„ ìˆœìœ¼ë¡œ ì¶œë ¥");
+			System.out.println("5. ì¢…ë£Œ");
 
-			System.out.println("¸Ş´º ¼±ÅÃ : ");
-			a = sc.nextInt(); //¸Ş´º ¼±ÅÃ
+			System.out.print("ë©”ë‰´ ì„ íƒ : ");
+			a = sc.nextInt(); //ë©”ë‰´ ì„ íƒ
 
-			//1¹ø ¸Ş´º ÀÏ¶§
+			//1ë²ˆ ë©”ë‰´ ì¼ë•Œ
 			if(a==1) {
-				std[n].num 		= n+1;
+				int x=0;
+				int y=0;
+				
+				System.out.println("í•™ë²ˆì„ ì…ë ¥ í•˜ì„¸ìš”:");
+				int number	= sc.nextInt();
+				
+				//í•™ë²ˆì´ ìˆëŠ”ê²½ìš° ì²´í¬
+				for(int i=0; i<3; i++) {
+					if(number == std[i].id && n!=i) {
+						y++;
+						x = i;
+					}
+				}
+				
+				//í•™ë²ˆì´ ìˆì„ê²½ìš°
+				if(y>0) {
+					System.out.println("êµ­ì–´ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[x].kor 		= sc.nextInt();
 
-				System.out.println("ÇĞ¹øÀ» ÀÔ·Â ÇÏ¼¼¿ä:");
-				std[n].number	= sc.nextInt();
+					System.out.println("ì˜ì–´ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[x].eng 		= sc.nextInt();
 
-				System.out.println("±¹¾î ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
-				std[n].kor 		= sc.nextInt();
+					System.out.println("ìˆ˜í•™ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[x].math 	= sc.nextInt();
 
-				System.out.println("¿µ¾î ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
-				std[n].eng 		= sc.nextInt();
+					System.out.println("ê³¼í•™ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[x].sci 		= sc.nextInt();
 
-				System.out.println("¼öÇĞ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
-				std[n].math 	= sc.nextInt();
+					std[x].getsum();
+					std[x].getavg();
+					System.out.println("ì…ë ¥ê°’ : ");
+					std[x].out2();
+				}
+				
+				//í•™ë²ˆì´ ì—†ì„ê²½ìš°
+				else {
+					std[n].num  	= n+1;
+					std[n].id		= number;
+					System.out.println("êµ­ì–´ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[n].kor 		= sc.nextInt();
 
-				System.out.println("°úÇĞ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
-				std[n].sci 		= sc.nextInt();
+					System.out.println("ì˜ì–´ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[n].eng 		= sc.nextInt();
 
-				std[n].getsum();
-				std[n].getavg();
-				System.out.println(std[n].sum);
-				System.out.println(std[n].avg);
-				n++;
-			}	//1¹ø ³¡
+					System.out.println("ìˆ˜í•™ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[n].math 	= sc.nextInt();
 
-			//2¹ø ÀÏ¶§
+					System.out.println("ê³¼í•™ ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
+					std[n].sci 		= sc.nextInt();
+
+					std[n].getsum();
+					std[n].getavg();
+					System.out.println("ì…ë ¥ê°’ : ");
+					std[n].out2();
+					n++;
+				}
+				
+				
+			}	//1ë²ˆ ë
+
+			//2ë²ˆ ì¼ë•Œ
 			if(a==2) {
-				System.out.println("ÀÔ·Â¼ø¹ø\tÇĞ¹ø\t±¹¾î\t¿µ¾î\t¼öÇĞ\t°úÇĞ\tÃÑÁ¡\tÆò±Õ");
+				System.out.println("ì…ë ¥ìˆœë²ˆ\tí•™ë²ˆ\têµ­ì–´\tì˜ì–´\tìˆ˜í•™\tê³¼í•™\tì´ì \tí‰ê· ");
 				for(int i=0; i<n; i++) {
 					std[i].out();
 				}
-			}	//2¹ø ³¡
+			}	//2ë²ˆ ë
 
-			//3¹ø ÀÏ¶§
+			//3ë²ˆ ì¼ë•Œ
 			if(a==3) {
 				int z = 0;  // 
-				int re = 0; //3È¸ ÀÌ»ó Àß¸ø ³ÖÀ» °æ¿ì µ¹¾Æ°¡°Ô ÇÔ
-				System.out.println("¼öÁ¤ ÇÒ ÇĞ»ıÀÇ ÇĞ¹øÀ» ÀÔ·Â ÇÏ¼¼¿ä");
+				int re = 0; //3íšŒ ì´ìƒ ì˜ëª» ë„£ì„ ê²½ìš° ëŒì•„ê°€ê²Œ í•¨
+				System.out.println("ìˆ˜ì • í•  í•™ìƒì˜ í•™ë²ˆì„ ì…ë ¥ í•˜ì„¸ìš”");
 
-				//¼öÁ¤ ÇÒ ÇĞ»ı ¹øÈ£°¡ ÀÖÀ»¶§ ±îÁö ¹İº¹
+				//ìˆ˜ì • í•  í•™ìƒ ë²ˆí˜¸ê°€ ìˆì„ë•Œ ê¹Œì§€ ë°˜ë³µ
 				while(true) {
-					int x = sc.nextInt(); //ÇĞ¹ø ÀÔ·Â
-					int y = 0; 			  // ÇĞ¹ø ÀÖ´ÂÁö ¾ø´ÂÁö Ã¼Å©
+					int x = sc.nextInt(); //í•™ë²ˆ ì…ë ¥
+					int y = 0; 			  // í•™ë²ˆ ìˆëŠ”ì§€ ì—†ëŠ”ì§€ ì²´í¬
 
-					//ÇĞ¹øÀÌ ÀÖ´Â°æ¿ì Ã¼Å©
+					//í•™ë²ˆì´ ìˆëŠ”ê²½ìš° ì²´í¬
 					for(int i=0; i<3; i++) {
-						int number = std[i].number;
+						int number = std[i].id;
 						if(x==number) {
 							y++;
 							z = i;
 						}
 					}
 
-					//3¹øµ¿¾È ÀÔ·ÂµÈ ÇĞ¹øÀÌ ¾øÀ»°æ¿ì
+					//3ë²ˆë™ì•ˆ ì…ë ¥ëœ í•™ë²ˆì´ ì—†ì„ê²½ìš°
 					if(re==2) break;
 
 					if(y==0) {
-						System.out.println("ÀÔ·ÂÇÏ½Å ÇĞ¹øÀº ¾ø´Â ÇĞ¹øÀÔ´Ï´Ù. ´Ù½Ã ÀÔ·ÂÇÏ¼¼¿ä.");
+						System.out.println("ì…ë ¥í•˜ì‹  í•™ë²ˆì€ ì—†ëŠ” í•™ë²ˆì…ë‹ˆë‹¤. ë‹¤ì‹œ ì…ë ¥í•˜ì„¸ìš”.");
 						re++;
 					}
 					else	break;
-
 				}
 
 				if(re==2) continue;
-				
-				System.out.println("¼öÁ¤ ÇÒ °ú¸ñ ¹øÈ£¸¦ ÀÔ·Â ÇÏ¼¼¿ä : 1.±¹¾î  2.¿µ¾î  3.¼öÇĞ  4.°úÇĞ");
+
+				System.out.println("ìˆ˜ì • í•  ê³¼ëª© ë²ˆí˜¸ë¥¼ ì…ë ¥ í•˜ì„¸ìš” : 1.êµ­ì–´  2.ì˜ì–´  3.ìˆ˜í•™  4.ê³¼í•™");
 				int choice=sc.nextInt();
-				
+
 				switch(choice) {
 				case 1 :
-					System.out.println("±¹¾î °ú¸ñÀÇ ¼öÁ¤ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
+					System.out.println("êµ­ì–´ ê³¼ëª©ì˜ ìˆ˜ì • ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
 					std[z].kor = sc.nextInt();
 					break;
 				case 2 :
-					System.out.println("¿µ¾î °ú¸ñÀÇ ¼öÁ¤ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
+					System.out.println("ì˜ì–´ ê³¼ëª©ì˜ ìˆ˜ì • ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
 					std[z].eng = sc.nextInt();
 					break;
 				case 3 :
-					System.out.println("¼öÇĞ °ú¸ñÀÇ ¼öÁ¤ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
+					System.out.println("ìˆ˜í•™ ê³¼ëª©ì˜ ìˆ˜ì • ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
 					std[z].math = sc.nextInt();
 					break;
 				case 4 :
-					System.out.println("°úÇĞ °ú¸ñÀÇ ¼öÁ¤ ¼ºÀûÀ» ÀÔ·Â ÇÏ¼¼¿ä");
+					System.out.println("ê³¼í•™ ê³¼ëª©ì˜ ìˆ˜ì • ì„±ì ì„ ì…ë ¥ í•˜ì„¸ìš”");
 					std[z].sci = sc.nextInt();
 					break;
 				}
@@ -143,16 +184,30 @@ public class ¿¬½À1 {
 				std[z].getsum();
 				std[z].getavg();
 
-				System.out.println(std[z].number + "ÇĞ»ıÀÇ ¼öÁ¤µÈ ¼ºÀûÀÔ´Ï´Ù.");
+				System.out.println(std[z].id + "í•™ìƒì˜ ìˆ˜ì •ëœ ì„±ì ì…ë‹ˆë‹¤.");
 
-				System.out.println("ÀÔ·Â¼ø¹ø\tÇĞ¹ø\t±¹¾î\t¿µ¾î\t¼öÇĞ\t°úÇĞ\tÃÑÁ¡\tÆò±Õ");
+				System.out.println("ì…ë ¥ìˆœë²ˆ\tí•™ë²ˆ\têµ­ì–´\tì˜ì–´\tìˆ˜í•™\tê³¼í•™\tì´ì \tí‰ê· ");
 				std[z].out();
-			} // 3¹ø ¸Ş´º ³¡
+			} // 3ë²ˆ ë©”ë‰´ ë
+			
+			if(a==4) {
+				int c=0;
+				for(int i=400; i>=0; i--) {
+					for(int j=0; j<3; j++) {
+						if(std[j].sum==i) {
+							std[j].out();
+							c++;
+						}
+					}
+					if(c==3) break;
+				}
+			}
+			
+			if(a==5) break;
 
-			if(a==4) break;
-
+			System.out.println();
 		}
-
+		
 	}
-
+	
 }
