@@ -1,9 +1,6 @@
 import java.util.Scanner;
 
 public class Test1 {
-	// 반    : J2 
-	// 학번 : 1701198
-	// 이름 : 이유택
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
